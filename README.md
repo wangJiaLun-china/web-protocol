@@ -89,7 +89,45 @@
 
     - [ message-body ]
 
+  - [ABNF(扩充巴科斯-瑙尔范式) 核心规则](https://zh.wikipedia.org/wiki/%E6%89%A9%E5%85%85%E5%B7%B4%E7%A7%91%E6%96%AF%E8%8C%83%E5%BC%8F)
 
+- 基于ABNF描述的HTTP协议格式
+
+  HTTP-message = start-line*( header-field CRLF) CRLF [message-body]
+
+  解释: HTTP消息 包含 起始行接着0个或多个HTTP头部之间用换行结尾,
+
+  ​	紧接着在换行 然后是可有可无的message-body
+
+  -  start-line = request-line / status-line
+
+    起始行包括 请求行 和 响应行
+
+    -  request-line = method SP reques-target SP HTTP-version CRLF
+
+      请求行包括 方法 空格 路径 空格 HTTP版本 空格
+
+    -  status-line = HTTP-version SP status-code SP reason-phrase CRLF
+
+      响应行包括 HTTP版本 空格 响应码 空格 字符串形式原因 空格
+
+  -  header-field = field-name ":" OWS field-value OWS
+
+    HTTP的头部包括 头部名称 : 头部值
+
+    - OWS = *( SP / HATB)
+
+      OWS是指 0 个或多个空格或横向制表符
+
+    - field-name = token
+
+    - field-value = *( field-coontent / 0bs-fold)
+
+  - message-body = *OCTET
+
+    二进制数据形式传递
+
+  ​
 
 
 
